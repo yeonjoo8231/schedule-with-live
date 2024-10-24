@@ -1,6 +1,12 @@
 import { fetchSchedule } from './actions';
+export default async function Page() {
+  const bookings = await fetchSchedule();
 
-export default function Page() {
-  const data = fetchSchedule();
-  return <div>calendar page</div>;
+  return (
+    <div>
+      {bookings.map((book) => (
+        <div key={book.id}>{book.summary}</div>
+      ))}
+    </div>
+  );
 }
